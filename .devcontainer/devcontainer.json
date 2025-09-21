@@ -4,8 +4,6 @@
     "dockerfile": "../Dockerfile",
     "context": ".."
   },
-  "workspaceFolder": "/workspace",
-  "remoteUser": "devuser",
   "forwardPorts": [3000],
   "postCreateCommand": "stack setup || true && stack build --only-dependencies || true && stack build || true",
   "postStartCommand": "echo 'Código pronto. Para rodar: ./watch.sh ou stack exec scotty-api-exe'",
