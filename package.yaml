@@ -1,0 +1,37 @@
+name: no-mans-sky-api
+version: 0.1.0.0
+synopsis: Uma API pessoal para o jogo no man's sky
+category: Web
+author: "Bruno H. Bock"
+maintainer: "bhenriquebock@gmail.com"
+
+
+library:
+  exposed-modules: []
+  source-dirs: app
+  ghc-options: -Wall
+  dependencies:
+    - base >= 4.14 && < 5
+
+
+executables:
+  scotty-api-exe:
+    main: Main.hs
+    source-dirs: app
+    ghc-options: -threaded -rtsopts -with-rtsopts=-N
+    dependencies:
+      - base
+      - scotty
+      - wai-extra
+      - random
+      - text
+      - aeson
+      - sqlite-simple
+      - http-types
+      - warp
+
+
+extra-source-files: []
+
+
+# stack will use this package.yaml as Hpack input to create .cabal

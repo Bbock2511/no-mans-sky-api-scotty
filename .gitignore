@@ -1,0 +1,17 @@
+# Stack build artifacts
+.stack-work/
+
+# GHC compiled outputs
+*.hi
+*.o
+
+# Executáveis gerados
+scotty-api-exe
+
+# Arquivos temporários do editor
+*.swp
+*~
+.vscode/
+
+# Banco de dados local (SQLite)
+db.sqlite

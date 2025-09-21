@@ -1,0 +1,16 @@
+# Stack resolver - se houver conflito, atualize para um resolver compatível com seu GHC local
+# Você pode trocar este resolver para outro lts/X.Y se necessário.
+resolver: ghc-9.2.7
+
+
+packages:
+  - .
+
+
+extra-deps: []
+
+
+flags: {}
+
+
+extra-package-dbs: []
