@@ -3,30 +3,31 @@
 
 module Main where
 
-
 import Web.Scotty
+import Model.Msg
+import Controller.MsgController
 import Database.SQLite.Simple
 import Network.HTTP.Types.Status (status200)
 import Data.Text.Lazy (Text)
-import qualified Data.Text.Lazy as TL
-
+import qualified Data.Text.Lazy.Encoding as TLE
 
 main :: IO ()
-main = do
+main = do 
     -- cria/abre banco SQLite local (db.sqlite no workspace)
     conn <- open "db.sqlite"
-    execute_ conn "CREATE TABLE IF NOT EXISTS msgs (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)"
-    close conn
+    initMsgDB conn
 
     scotty 3000 $ do
+        msgRoutes conn
         get "/" $ do
-            text "Hello from Scotty!"
+            text "Welcome to no mans sky api"
 
         get "/ping" $ do
             status status200
             json ("pong" :: Text)
 
-
         post "/echo" $ do
-            b <- body
-            text (TL.fromStrict (decodeUtf8 b))
+            b <- body  -- ByteString Lazy
+            text (TLE.decodeUtf8 b)  -- já Text Lazy
+
+        
