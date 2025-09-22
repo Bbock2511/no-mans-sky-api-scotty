@@ -5,14 +5,22 @@ category: Web
 author: "Bruno H. Bock"
 maintainer: "bhenriquebock@gmail.com"
 
-
 library:
-  exposed-modules: []
-  source-dirs: app
+  source-dirs:
+    - src
   ghc-options: -Wall
   dependencies:
     - base >= 4.14 && < 5
-
+    - text
+    - aeson
+    - sqlite-simple
+    - random
+    - http-types
+    - wai-extra
+    - warp
+    - bytestring
+    - scotty
+  
 
 executables:
   scotty-api-exe:
@@ -21,13 +29,14 @@ executables:
     ghc-options: -threaded -rtsopts -with-rtsopts=-N
     dependencies:
       - base
-      - scotty
-      - wai-extra
-      - random
-      - text
+      - no-mans-sky-api      
+      - scotty               
+      - sqlite-simple        
+      - text                 
+      - http-types           
       - aeson
-      - sqlite-simple
-      - http-types
+      - bytestring
+      - wai-extra
       - warp
 
 
