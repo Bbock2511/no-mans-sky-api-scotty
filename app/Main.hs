@@ -6,6 +6,8 @@ module Main where
 import Web.Scotty
 import Model.Msg
 import Controller.MsgController
+import Model.Galaxy
+import Controller.GalaxyController
 import Database.SQLite.Simple
 import Network.HTTP.Types.Status (status200)
 import Data.Text.Lazy (Text)
@@ -16,9 +18,12 @@ main = do
     -- cria/abre banco SQLite local (db.sqlite no workspace)
     conn <- open "db.sqlite"
     initMsgDB conn
+    initGalaxyDB conn
 
     scotty 3000 $ do
         msgRoutes conn
+        galaxyRoutes conn
+
         get "/" $ do
             text "Welcome to no mans sky api"
 
