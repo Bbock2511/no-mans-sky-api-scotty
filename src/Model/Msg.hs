@@ -2,7 +2,6 @@
 
 module Model.Msg
   ( Msg(..)
-  , initMsgDB
   , insertMsg
   , getMsgs
   , getMsgById
@@ -24,9 +23,6 @@ instance FromRow Msg where
 
 instance ToRow Msg where
   toRow (Msg id text) = toRow (id, text)
-
-initMsgDB :: Connection -> IO ()
-initMsgDB conn = execute_ conn "CREATE TABLE IF NOT EXISTS msgs (id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)"
 
 insertMsg :: Connection -> Text -> IO ()
 insertMsg conn txt = execute conn "INSERT INTO msgs (text) VALUES (?)" (Only txt)

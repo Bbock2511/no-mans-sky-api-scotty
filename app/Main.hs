@@ -4,25 +4,25 @@
 module Main where
 
 import Web.Scotty
-import Model.Msg
 import Controller.MsgController
-import Model.Galaxy
 import Controller.GalaxyController
+import Controller.SolarSystemController
 import Database.SQLite.Simple
 import Network.HTTP.Types.Status (status200)
 import Data.Text.Lazy (Text)
 import qualified Data.Text.Lazy.Encoding as TLE
+import InitDatabase
 
 main :: IO ()
 main = do 
     -- cria/abre banco SQLite local (db.sqlite no workspace)
     conn <- open "db.sqlite"
-    initMsgDB conn
-    initGalaxyDB conn
+    initDB conn
 
     scotty 3000 $ do
         msgRoutes conn
         galaxyRoutes conn
+        solarSystemRoutes conn
 
         get "/" $ do
             text "Welcome to no mans sky api"
@@ -34,5 +34,7 @@ main = do
         post "/echo" $ do
             b <- body  -- ByteString Lazy
             text (TLE.decodeUtf8 b)  -- já Text Lazy
+
+    close conn
 
         
