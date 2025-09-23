@@ -4,7 +4,6 @@
 module Model.Galaxy
   ( Galaxy(..)
   , GalaxyInsert(..)
-  , initGalaxyDB
   , insertGalaxy
   , getGalaxies
   , getGalaxyById
@@ -37,16 +36,6 @@ instance FromRow Galaxy where
 
 instance ToRow GalaxyInsert where
     toRow (GalaxyInsert name gtype note) = toRow (name, gtype, note)
-
--- Criação da tabela
-initGalaxyDB :: Connection -> IO ()
-initGalaxyDB conn =
-    execute_ conn
-      "CREATE TABLE IF NOT EXISTS galaxies \
-      \(id INTEGER PRIMARY KEY AUTOINCREMENT, \
-      \name TEXT NOT NULL, \
-      \galaxyType TEXT NOT NULL, \
-      \note TEXT NULL)"
 
 -- Insert
 insertGalaxy :: Connection -> GalaxyInsert -> IO ()

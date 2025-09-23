@@ -31,13 +31,13 @@ galaxyRoutes conn = do
         galaxies <- liftIO $ getGalaxies conn
         json (map galaxyToJSON galaxies)
 
-    -- GET /galaxiew/:id
+    -- GET /galaxies/:id
     get "/galaxies/:id" $ do
         gid <- captureParam "id"
         galaxy <- liftIO $ getGalaxyById conn gid
         case galaxy of
             Just g  -> json(galaxyToJSON g)
-            Nothing -> status status404 >> text "Mensagem não encontrada"
+            Nothing -> status status404 >> text "Galáxia não encontrada"
 
     -- POST /galaxies
     post "/galaxies" $ do
@@ -67,5 +67,5 @@ galaxyRoutes conn = do
     delete "/galaxies/:id" $ do
         gid <- captureParam "id"
         liftIO $ deleteGalaxy conn gid
-        text "Mensagem deletada"
+        text "Galáxia deletada"
     
