@@ -28,3 +28,16 @@ initDB conn = do
                   \ galaxy_id INTEGER NOT NULL, \
                   \ FOREIGN KEY(galaxy_id) REFERENCES galaxies(id) \
                   \ )"
+    
+    execute_ conn "CREATE TABLE IF NOT EXISTS planets ( \
+                  \ id INTEGER PRIMARY KEY AUTOINCREMENT, \
+                  \ name TEXT NOT NULL, \
+                  \ weather TEXT NOT NULL, \
+                  \ sentinels TEXT NOT NULL, \
+                  \ flora TEXT NOT NULL, \
+                  \ fauna TEXT NOT NULL, \
+                  \ resources TEXT NOT NULL, \
+                  \ notes TEXT, \
+                  \ solar_system_id INTEGER NOT NULL, \
+                  \ FOREIGN KEY(solar_system_id) REFERENCES solar_systems(id) \
+                  \ )"
