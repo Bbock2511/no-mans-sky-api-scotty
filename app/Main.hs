@@ -7,10 +7,12 @@ import Web.Scotty
 import Controller.MsgController
 import Controller.GalaxyController
 import Controller.SolarSystemController
+import Controller.PlanetController
 import Database.SQLite.Simple
 import Network.HTTP.Types.Status (status200)
 import Data.Text.Lazy (Text)
 import qualified Data.Text.Lazy.Encoding as TLE
+import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import InitDatabase
 
 main :: IO ()
@@ -20,9 +22,12 @@ main = do
     initDB conn
 
     scotty 3000 $ do
+        middleware logStdoutDev
+
         msgRoutes conn
         galaxyRoutes conn
         solarSystemRoutes conn
+        planetRoutes conn
 
         get "/" $ do
             text "Welcome to no mans sky api"

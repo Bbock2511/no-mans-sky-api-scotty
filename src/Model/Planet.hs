@@ -54,7 +54,7 @@ instance ToJSON PlanetInsert
 -- Insert
 insertPlanet :: Connection -> PlanetInsert -> IO ()
 insertPlanet conn p = 
-    execute conn "INSERT INTO planets (name, weather, flora, fauna, resources, notes, solar_system_id) VALUES (?, ?, ?, ?, ?, ?, ?)"
+    execute conn "INSERT INTO planets (name, weather, sentinels, flora, fauna, resources, notes, solar_system_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
     p
 
 -- Select *
