@@ -6,7 +6,6 @@ module View.GalaxyView
 
 import Model.Galaxy
 import Data.Aeson (ToJSON, toJSON, object, (.=))
-import Data.Text.Lazy (Text)
 
 -- Instância ToJSON customizada
 instance ToJSON Galaxy where

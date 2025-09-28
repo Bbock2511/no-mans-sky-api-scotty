@@ -22,14 +22,14 @@ data Galaxy = Galaxy
     , galaxyName :: Text
     , galaxyType :: Text
     , galaxyNote :: Maybe Text
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 -- Tipo para inserir no banco (sem ID)
 data GalaxyInsert = GalaxyInsert
     { giName :: Text
     , giType :: Text
     , giNote :: Maybe Text
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 instance FromRow Galaxy where 
     fromRow = Galaxy <$> field <*> field <*> field <*> field

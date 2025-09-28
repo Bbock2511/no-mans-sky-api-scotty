@@ -12,8 +12,8 @@ module Model.SolarSystem
   ) where
 
 import Database.SQLite.Simple
-import Database.SQLite.Simple.FromRow
-import Database.SQLite.Simple.ToRow
+import Database.SQLite.Simple.FromRow()
+import Database.SQLite.Simple.ToRow()
 import GHC.Generics
 import Data.Text (Text)
 
@@ -25,7 +25,7 @@ data SolarSystem = SolarSystem
     , systemConflict :: Text
     , systemNotes    :: Maybe Text
     , galaxyIdFk     :: Int   -- chave estrangeira para Galaxy
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 -- Para SELECTs
 instance FromRow SolarSystem where
@@ -39,7 +39,7 @@ data SolarSystemInsert = SolarSystemInsert
     , siConflict  :: Text
     , siNotes     :: Maybe Text
     , siGalaxyId  :: Int
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 instance ToRow SolarSystemInsert where
   toRow (SolarSystemInsert n r e c sn gid) = toRow (n, r, e, c, sn, gid)

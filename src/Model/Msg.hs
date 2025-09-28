@@ -10,13 +10,13 @@ module Model.Msg
   ) where
 
 import Database.SQLite.Simple
-import Database.SQLite.Simple.FromRow
+import Database.SQLite.Simple.FromRow()
 import Data.Text (Text)
 
 data Msg = Msg
   { msgId :: Int
   , msgText :: Text
-  } deriving (Show)
+  } deriving (Show, Eq)
 
 instance FromRow Msg where
   fromRow = Msg <$> field <*> field

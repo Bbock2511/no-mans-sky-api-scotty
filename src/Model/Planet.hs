@@ -12,8 +12,8 @@ module Model.Planet
     ) where
 
 import Database.SQLite.Simple
-import Database.SQLite.Simple.FromRow
-import Database.SQLite.Simple.ToRow
+import Database.SQLite.Simple.FromRow()
+import Database.SQLite.Simple.ToRow()
 import Data.Aeson (FromJSON, ToJSON)
 import GHC.Generics
 import Data.Text (Text)
@@ -28,7 +28,7 @@ data Planet = Planet
     , planetResources :: Text
     , planetNotes :: Maybe Text
     , solarSystemIdFK :: Int    -- Chave estrangeira para SolarSystem
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 instance FromRow Planet where
     fromRow = Planet <$> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field <*> field
@@ -43,7 +43,7 @@ data PlanetInsert = PlanetInsert
     , planetInsertResources :: Text
     , planetInsertNotes :: Maybe Text
     , planetInsertSolarSystemId :: Int
-    } deriving (Show, Generic)
+    } deriving (Show, Generic, Eq)
 
 instance ToRow PlanetInsert where
     toRow (PlanetInsert n w s fl fa r pn ssid) = toRow (n, w, s, fl, fa, r, pn, ssid)

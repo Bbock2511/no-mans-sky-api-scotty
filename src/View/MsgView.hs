@@ -6,7 +6,6 @@ module View.MsgView
 
 import Model.Msg
 import Data.Aeson (ToJSON, toJSON, object, (.=))
-import Data.Text.Lazy (Text)
 
 instance ToJSON Msg where
   toJSON (Msg mid txt) =

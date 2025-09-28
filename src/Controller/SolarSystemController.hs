@@ -58,7 +58,7 @@ solarSystemRoutes conn = do
         json input
 
     -- PUT /solar-systems/:id
-    post "/solar-systems/:id" $ do
+    put "/solar-systems/:id" $ do
         ssid <- captureParam "id"
         input <- jsonData :: ActionM SolarSystemInput
         let si = SolarSystemInsert
