@@ -105,4 +105,15 @@ e reinicie o servidor.
 
 Posteriormente pretendo adicionar um arquivo de configuração para Postman e Insomnia, facilitando o teste personalizado e individual de cada rota.
 
+## Resultado final:
+![Demonstração](assets/API-NMS.gif)
+
+## Referências
+- [Haskell Documentation](https://www.haskell.org/documentation/)  
+- [Scotty – Web Framework](https://hackage.haskell.org/package/scotty)  
+- [WAI – Web Application Interface](https://hackage.haskell.org/package/wai)  
+- [SQLite](https://www.sqlite.org/docs.html)  
+- OpenAI ChatGPT (auxílio no desenvolvimento e explicações)  
+
+
 Se algo der errado com o resolver (`stack.yaml`), rode `stack setup` para deixar o ambiente consistente.
